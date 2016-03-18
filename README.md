@@ -161,3 +161,30 @@ The next goal is for us to emit the event from the server to the rest of the use
 In order to send an event to everyone, Socket.IO gives us the io.emit:
 
 <pre><code>io.emit('some event', { for: 'everyone' });</code></pre>
+
+If you want to send a message to everyone except for a certain socket, we have the broadcast flag:
+<pre><code>io.on('connection', function(socket){
+  socket.broadcast.emit('hi');
+});</code></pre>
+
+In this case, for the sake of simplicity we’ll send the message to everyone, including the sender.
+<pre><code>io.on('connection', function(socket){
+  socket.on('chat message', function(msg){
+    io.emit('chat message', msg);
+  });
+});</code></pre>
+
+And on the client side when we capture a chat message event we’ll include it in the page. The total client-side JavaScript code now amounts to:
+<pre><code>&lt;script&gt;
+  var socket = io();
+  $('form').submit(function(){
+    socket.emit('chat message', $('#m').val());
+    $('#m').val('');
+    return false;
+  });
+  socket.on('chat message', function(msg){
+    $('#messages').append($('&lt;li&gt;').text(msg));
+  });
+&lt;/script&gt;</code></pre>
+
+And that completes our chat application, in about 20 lines of code!
