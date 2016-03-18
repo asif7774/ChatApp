@@ -113,7 +113,7 @@ Notice that I initialize a new instance of socket.io by passing the http (the HT
 
 Now in index.html I add the following snippet before the <code>&lt;/body&gt;</code>:
 
-<pre><code>&lt;script src="/socket.io/socket.io.js"&gt;&lt;/script&gt;
+<pre><code>&lt;script src="https://cdn.socket.io/socket.io-1.2.0.js"&gt;&lt;/script&gt;
 &lt;script&gt;
   var socket = io();
 &lt;/script&gt;</code></pre>
@@ -137,7 +137,7 @@ Each socket also fires a special disconnect event:
 The main idea behind Socket.IO is that you can send and receive any events you want, with any data you want. Any objects that can be encoded as JSON will do, and binary data is supported too.
 
 Let’s make it so that when the user types in a message, the server gets it as a chat message event. The scripts section in index.html should now look as follows:
-<pre><code>&lt;script src="/socket.io/socket.io.js"&gt;&lt;/script&gt;
+<pre><code>&lt;script src="https://cdn.socket.io/socket.io-1.2.0.js"&gt;&lt;/script&gt;
 &lt;script src="http://code.jquery.com/jquery-1.11.1.js"&gt;&lt;/script&gt;
 &lt;script&gt;
   var socket = io();
